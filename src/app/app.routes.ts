@@ -2,14 +2,17 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'production',
+    pathMatch: 'full'
+  },
+  {
     path: 'production',
-    loadChildren: () =>
-      import(
-        './features/production/pages/production-board/production.routes'
-      ).then((m) => m.productionRoutes),
+    loadChildren: () => import('./features/production/pages/production-board/production.routes')
+      .then(m => m.productionRoutes)
   },
   {
     path: '**',
-    redirectTo: 'production', // or create a dedicated not-found component
-  },
+    redirectTo: 'production'
+  }
 ];

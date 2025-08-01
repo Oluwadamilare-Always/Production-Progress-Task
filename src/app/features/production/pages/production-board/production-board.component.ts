@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, effect, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { StageItem } from '../../../../core/models/stage-item.model';
+import {
+  deserializeStageItems,
+  StageItem,
+} from '../../../../core/models/stage-item.model';
 import { StageComponent } from '../../component/stage/stage.component';
 
 @Component({
@@ -16,8 +19,7 @@ export class ProductionBoardComponent implements OnInit {
   prototype = signal<StageItem[]>([]);
   development = signal<StageItem[]>([]);
   ship = signal<StageItem[]>([]);
-
-  // Signal for showing feedback messages to the user
+ 
   feedbackMessage = signal<string>('');
 
   // Signal for the input field value to add new ideas
@@ -26,9 +28,54 @@ export class ProductionBoardComponent implements OnInit {
   // Counter to generate unique IDs for new items
   idCounter = signal<number>(0);
 
-  constructor() {}
+  private readonly STORAGE_KEY = 'production-board-state';
+
+  constructor() {
+    // Load saved state on component initialization
+    this.loadState();
+
+    // Save state whenever any signal changes
+    effect(() => {
+      const state = {
+        idea: this.idea(),
+        prototype: this.prototype(),
+        development: this.development(),
+        ship: this.ship(),
+        idCounter: this.idCounter(),
+      };
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(state));
+    });
+  }
 
   ngOnInit(): void {}
+  // Called during component initialization to restore previous state
+  private loadState(): void {
+    // 1. Retrieve saved state from localStorage
+    const savedState = localStorage.getItem(this.STORAGE_KEY);
+
+    // 2. Proceed only if state exists
+    if (savedState) {
+      try {
+        // 3. Parse JSON string to JavaScript object
+        const state = JSON.parse(savedState);
+
+        // 4. Update component signals with deserialized data
+        this.idea.set(deserializeStageItems(state.idea));
+        this.prototype.set(deserializeStageItems(state.prototype));
+        this.development.set(deserializeStageItems(state.development));
+        this.ship.set(deserializeStageItems(state.ship));
+        this.idCounter.set(Number(state.idCounter) || 0);
+      } catch (e) {
+        // 5. Handle data corruption
+        console.error('Failed to load saved state', e);
+        this.clearStorage(); // Prevent future errors with corrupted data
+      }
+    }
+  }
+
+  private clearStorage(): void {
+    localStorage.removeItem(this.STORAGE_KEY);
+  }
 
   // Adds a new idea to the 'Idea' stage
   addIdea(): void {
@@ -72,7 +119,7 @@ export class ProductionBoardComponent implements OnInit {
   moveToPreviousStage(item: StageItem, currentStage: number): void {
     if (currentStage === 0) {
       this.showFeedback(
-        'This item is already in the initial stage (Idea) and cannot move backward.',
+        'This item is already in the initial stage (Idea) and cannot move backward.'
       );
       return;
     }
