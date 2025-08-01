@@ -1,12 +1,12 @@
 .stage {
-  border: 1px solid #f5e4e4;
+  border: 1px solid #f0d5d5;
   padding: 16px;
   height: 100%;
   border-radius: 8px;
   background: #ffffff;
   display: flex;
   flex-direction: column;
-  min-height: 160px;
+  min-height: 253px;
   max-height: 80vh;
   overflow: hidden;
 
@@ -16,7 +16,7 @@
     padding-bottom: 8px;
     text-align: center;
     color: #1a202c;
-    border-bottom: 2px solid #f5e4e4;
+    border-bottom: 2px solid #f0d5d5;
   }
 
   ul {
