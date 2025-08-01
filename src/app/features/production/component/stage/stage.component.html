@@ -1,0 +1,14 @@
+<div class="stage">
+  <!-- Stage title display -->
+  <h3>{{ title() }}</h3>
+
+  <!-- List of items in this stage -->
+  <ul>
+    @for (item of items(); track item) {
+      <!-- Single click: move forward | Double click: move backward -->
+      <li (click)="handleClick(item)" (dblclick)="handleDoubleClick(item)">
+        {{ item.name }}
+      </li>
+    }
+  </ul>
+</div>

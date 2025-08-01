@@ -1,0 +1,59 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "Production-Progress": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss",
+          "spec": false,
+          "flat": false,
+          "changeDetection": "OnPush",
+          "displayBlock": true,
+          "export": true,
+          "type": "component",
+          "prefix": "app"
+        },
+        "@schematics/angular:module": {
+          "flat": false,
+          "routing": false,
+          "routingScope": "Child"
+        },
+        "@schematics/angular:service": {
+          "flat": true,
+          "spec": false
+        },
+        "@schematics/angular:directive": {
+          "flat": true,
+          "spec": false,
+          "prefix": "app"
+        },
+        "@schematics/angular:pipe": {
+          "flat": true,
+          "spec": false
+        },
+        "@schematics/angular:class": {
+          "spec": false
+        },
+        "@schematics/angular:guard": {
+          "flat": true,
+          "spec": false
+        },
+        "@schematics/angular:interceptor": {
+          "flat": true,
+          "spec": false
+        },
+        "@schematics/angular:resolver": {
+          "flat": true,
+          "spec": false
+        }
+      }
+    }
+  },
+  "defaultProject": "Production-Progress"
+}

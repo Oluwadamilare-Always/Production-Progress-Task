@@ -1,59 +1,69 @@
-# ProductionProgress
+# Production Pipeline Board
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.4.
+This is a lightweight Kanban-style production board built with **Angular signals** and component communication. The app lets you manage ideas through four key stages: **Idea → Prototype → Development → Ship**, with intuitive single and double click interactions for moving items forward and backward.
 
-## Development server
+---
 
-To start a local development server, run:
+##  How to Run This Project
 
-```bash
-ng serve
-```
+Follow these steps to set up and run the application locally:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 1. Clone the Repository
 
 ```bash
-ng generate component component-name
-```
+git clone https://github.com/your-username/production-pipeline-board.git
+cd production-pipeline-board
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-```bash
-ng generate --help
-```
+### 2. Install Dependencies
+Make sure you have Node.js and Angular CLI installed.
 
-## Building
+  npm install
 
-To build the project run:
 
-```bash
-ng build
-```
+### 3. Run the Development Server 
+  ng serve
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Summary: What This Application Does
+  The Production Pipeline Board is a task flow manager inspired by real-world software pipelines. It visually tracks the journey of a task from an idea to shipping, while enforcing logical movement rules between stages.
 
-```bash
-ng test
-```
+ Features":
+  - Add New Ideas via input field and press Enter
 
-## Running end-to-end tests
+  - Progress Tasks with a single click
 
-For end-to-end (e2e) testing, run:
+  - Send Tasks Back a stage with a double click
 
-```bash
-ng e2e
-```
+  - Feedback Messages guide user interactions
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+  - Built using Angular Signals for fine-grained reactivity
 
-## Additional Resources
+  - Modular structure with reusable StageComponent
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+ How It Works
+  - Tasks (or “Stage Items”) start in the Idea stage.
+
+  -  A single click on a task moves it forward one stage:
+
+  - Idea → Prototype → Development → Ship
+
+  - A double click moves it backward one stage:
+
+  - Ship → Development → Prototype → Idea
+
+  - Once a task reaches Ship, a congratulatory message is shown.
+
+  - If a task is already in Idea, a double click won’t push it back further — the app prevents invalid moves and displays a helpful message.
+
+  - The app uses signals for state management (no external state libraries required).
+
+ Tech Stack
+  - Angular 17+
+
+  - Angular Signals (Reactive state management)
+
+  - TypeScript
+
+  - Component-based architecture

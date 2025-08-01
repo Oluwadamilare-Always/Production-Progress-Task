@@ -1,0 +1,50 @@
+<div class="container">
+  <!-- Feedback alert if a message exists -->
+  @if (feedbackMessage()) {
+    <div class="feedback">{{ feedbackMessage() }}</div>
+  }
+
+  <h1>Production Pipeline</h1>
+
+  <!-- Input to add a new idea. Triggers on Enter key -->
+  <input
+    [value]="newItem()"
+    (input)="newItem.set($any($event.target).value)"
+    (keyup.enter)="addIdea()"
+    placeholder="Add new idea and press Enter in your keyboard"
+  />
+
+  <div class="stages">
+    <!-- Each stage in the pipeline is represented by app-stage component -->
+
+    <!-- Stage 0: Idea -->
+    <app-stage
+      [title]="'Idea'"
+      [items]="idea()"
+      (moveForward)="moveToNextStage($event, 0)"
+    ></app-stage>
+
+    <!-- Stage 1: Prototype -->
+    <app-stage
+      [title]="'Prototype'"
+      [items]="prototype()"
+      (moveForward)="moveToNextStage($event, 1)"
+      (moveBackward)="moveToPreviousStage($event, 1)"
+    ></app-stage>
+
+    <!-- Stage 2: Development -->
+    <app-stage
+      [title]="'Development'"
+      [items]="development()"
+      (moveForward)="moveToNextStage($event, 2)"
+      (moveBackward)="moveToPreviousStage($event, 2)"
+    ></app-stage>
+
+    <!-- Stage 3: Ship -->
+    <app-stage
+      [title]="'Ship'"
+      [items]="ship()"
+      (moveBackward)="moveToPreviousStage($event, 3)"
+    ></app-stage>
+  </div>
+</div>

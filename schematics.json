@@ -1,0 +1,51 @@
+{
+  "$schema": "./node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss",
+      "spec": false,
+      "flat": false,
+      "changeDetection": "OnPush",
+      "displayBlock": true,
+      "export": true,
+      "type": "component",
+      "prefix": "app",
+      "skipTests": true,
+      "inlineStyle": false,
+      "inlineTemplate": false
+    },
+    "@schematics/angular:module": {
+      "flat": false,
+      "routing": false,
+      "routingScope": "Child"
+    },
+    "@schematics/angular:service": {
+      "flat": true,
+      "skipTests": true
+    },
+    "@schematics/angular:directive": {
+      "flat": true,
+      "skipTests": true,
+      "prefix": "app"
+    },
+    "@schematics/angular:pipe": {
+      "flat": true,
+      "skipTests": true
+    },
+    "@schematics/angular:class": {
+      "spec": false
+    },
+    "@schematics/angular:guard": {
+      "flat": true,
+      "skipTests": true
+    },
+    "@schematics/angular:interceptor": {
+      "flat": true,
+      "skipTests": true
+    },
+    "@schematics/angular:resolver": {
+      "flat": true,
+      "skipTests": true
+    }
+  }
+}

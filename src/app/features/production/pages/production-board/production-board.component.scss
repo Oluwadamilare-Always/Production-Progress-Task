@@ -1,0 +1,56 @@
+.container {
+  padding: 20px;
+  margin: auto;
+  font-family: "Segoe UI", sans-serif;
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  input {
+    padding: 10px;
+    width: 100%;
+    max-width: 500px;
+    height: 43px;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+  }
+
+  .feedback {
+    background-color: rgb(110, 171, 80);
+    color: white;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    animation: fadeInOut 9s ease-in-out forwards;
+  }
+
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .stages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+
+    @media (max-width: 300px) {
+      grid-template-columns: 1fr !important;
+    }
+  }
+}
