@@ -4,7 +4,7 @@ This is a lightweight Kanban-style production board built with **Angular signals
 
 ---
 
-##  How to Run This Project
+## How to Run This Project
 
 Follow these steps to set up and run the application locally:
 
@@ -21,7 +21,7 @@ Make sure you have Node.js and Angular CLI installed.
   npm install
 
 
-### 3. Run the Development Server 
+### 3. Run the Development Server
   ng serve
 
 
@@ -67,3 +67,4 @@ Summary: What This Application Does
   - TypeScript
 
   - Component-based architecture
+```
