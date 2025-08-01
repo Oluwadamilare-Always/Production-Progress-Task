@@ -1,11 +1,16 @@
 import { Routes } from '@angular/router';
 
-export const productionRoutes: Routes = [
+export const routes: Routes = [
   {
     path: '',
-    loadComponent: () =>
-      import('./production-board.component').then(
-        (m) => m.ProductionBoardComponent,
-      ),
+    redirectTo: 'production',
+    pathMatch: 'full',
+  },
+  {
+    path: 'production',
+    loadChildren: () =>
+      import(
+        './features/production/pages/production-board/production.routes'
+      ).then((m) => m.productionRoutes),
   },
 ];
