@@ -1,5 +1,6 @@
 {
   "explorer.compactFolders": false,
+  "explorer.fileNesting.separator": ">",
   "files.experimental.enableTrash": false,
   "files.simpleDialog.enable": true,
   "workbench.editor.enablePreview": false,
